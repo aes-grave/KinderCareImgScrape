@@ -17,14 +17,15 @@ USERNAME = config("USERNAME")
 PASSWORD = config("PASSWORD")
 WAIT_TIME = config("WAIT_TIME", default=0)
 CHILDS_NAME = config("CHILDS_NAME")
-HEADLESS = config("HEADLESS", default=True)
+HEADLESS = config("HEADLESS", default=False)
 
 
 def main():
 
     chrome_options = Options()
 
-    if HEADLESS:
+    if HEADLESS == True:
+        print("Headless Value: " + HEADLESS)
         chrome_options.add_argument("--headless")
 
     driver = webdriver.Chrome(WEBDRIVER_PATH, options=chrome_options)
@@ -76,8 +77,8 @@ def main():
     if DEBUG:
         print("Last Page: " + last_page)
 
-    # Navigate to Last page
-    driver.find_element(By.XPATH, "//*[@class='pagination']/li[last()]/a").click()
+    # Navigate to Next page
+    driver.find_element(By.XPATH, "//*[@class='pagination']/li[last()-1]/a").click()
 
     while current_page > 0:
         # Store all image links
