@@ -39,10 +39,13 @@ This is an example of how to list things you need to use the software and how to
 <!-- USAGE EXAMPLES -->
 
 ## Usage
+Forked from davidallenr repo. The original python script was very helpful and save me alot of time. I modifed this to accomodate videos that were uploaded. I also changed the way the files were labeled, namely I added an iso standard date into the filename. I also added a try in case there were any issues with the download. 
 
-This is mainly for my personal use but you're more than welcome to adapt it to your own needs.
-This downloads all my kids images from the kindercare web app. It will check if the file exists before writing it.
-Sleeps can be changed to whatever works for you.
+ex. 2022-12-25-xxx-CHILDS_NAME.jpg or mov
+
+xxx represents the page that the file came from. There might be some need to know this.
+
+I ran into one problem pulling the files, in some cases it seems that instead of a thumbnail image, the actual image is in the alt src field and there isn't a "big_" image. This will cause a 404 error from S3 saying the file doesn't exist. I haven't found a way around that error yet, but I did put in a try/exception to flag an error during the download process. The page name in the filename helps to find the missing images. When I ran this I only had about a .5-1% error rate with this particular problem. 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 ````
